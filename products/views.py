@@ -18,9 +18,9 @@ class Products(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, category_id):
-        objs = Product.objects.filter(category=category_id).order_by("-priority")
+        objs = Product.objects.filter(category=category_id) # .order_by("-priority")
 
-        paginator = Paginator(objs, 2)
+        paginator = Paginator(objs, 10)
         page_num = request.GET.get('page', 1)
         paginated_objs = paginator.get_page(page_num)
 
